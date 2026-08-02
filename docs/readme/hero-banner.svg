@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Paper Reading Agent</title>
+  <desc id="desc">A colorful academic technology banner showing a paper, evidence graph, report, and poster workflow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#091B49"/>
+      <stop offset="0.48" stop-color="#2535A8"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#030712" flood-opacity="0.28"/>
+    </filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="30" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="30" fill="url(#grid)"/>
+
+  <circle cx="1090" cy="45" r="120" fill="#22D3EE" fill-opacity="0.13"/>
+  <circle cx="980" cy="310" r="160" fill="#FB7185" fill-opacity="0.10"/>
+  <circle cx="70" cy="325" r="130" fill="#60A5FA" fill-opacity="0.11"/>
+
+  <path d="M40 270 C190 190, 300 330, 455 245 S760 155, 920 235 S1080 300, 1170 225" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="3"/>
+  <path d="M25 292 C180 210, 310 350, 470 265 S770 178, 935 255 S1085 320, 1180 245" fill="none" stroke="#22D3EE" stroke-opacity="0.30" stroke-width="2"/>
+
+  <g transform="translate(60 55)">
+    <text x="0" y="52" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="54" font-weight="800" letter-spacing="-1.2">Paper Reading Agent</text>
+    <text x="2" y="92" fill="#DCEBFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22" font-weight="500">Evidence-grounded paper reading, poster generation, and review-ready delivery.</text>
+
+    <g transform="translate(0 132)">
+      <rect width="186" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.23"/>
+      <circle cx="25" cy="23" r="8" fill="#22D3EE"/>
+      <text x="43" y="30" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700">Traceable claims</text>
+    </g>
+    <g transform="translate(198 132)">
+      <rect width="190" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.23"/>
+      <circle cx="25" cy="23" r="8" fill="#A78BFA"/>
+      <text x="43" y="30" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700">Visual posters</text>
+    </g>
+    <g transform="translate(400 132)">
+      <rect width="206" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.23"/>
+      <circle cx="25" cy="23" r="8" fill="#FDE68A"/>
+      <text x="43" y="30" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700">QA-gated outputs</text>
+    </g>
+  </g>
+
+  <g transform="translate(780 48)" filter="url(#shadow)">
+    <rect x="0" y="32" width="178" height="224" rx="18" fill="#FFFFFF"/>
+    <rect x="22" y="58" width="82" height="11" rx="5.5" fill="#2535A8"/>
+    <rect x="22" y="83" width="132" height="7" rx="3.5" fill="#CBD5E1"/>
+    <rect x="22" y="99" width="116" height="7" rx="3.5" fill="#CBD5E1"/>
+    <rect x="22" y="128" width="58" height="52" rx="8" fill="#DBEAFE"/>
+    <path d="M34 166 L48 150 L59 158 L72 139" fill="none" stroke="#2563EB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="92" y="129" width="62" height="8" rx="4" fill="#A78BFA"/>
+    <rect x="92" y="146" width="48" height="7" rx="3.5" fill="#CBD5E1"/>
+    <rect x="92" y="162" width="55" height="7" rx="3.5" fill="#CBD5E1"/>
+    <rect x="22" y="199" width="132" height="8" rx="4" fill="#CBD5E1"/>
+    <rect x="22" y="216" width="106" height="8" rx="4" fill="#CBD5E1"/>
+
+    <g transform="translate(133 0)">
+      <rect width="218" height="152" rx="20" fill="#F8FAFC"/>
+      <rect x="18" y="18" width="182" height="27" rx="8" fill="url(#cyan)"/>
+      <rect x="18" y="57" width="50" height="77" rx="9" fill="#EDE9FE"/>
+      <rect x="78" y="57" width="122" height="34" rx="9" fill="#DBEAFE"/>
+      <rect x="78" y="100" width="56" height="34" rx="9" fill="#DCFCE7"/>
+      <rect x="144" y="100" width="56" height="34" rx="9" fill="#FEF3C7"/>
+      <circle cx="181" cy="31" r="5" fill="#FFFFFF"/>
+    </g>
+
+    <g transform="translate(215 164)">
+      <circle cx="0" cy="0" r="9" fill="#22D3EE" filter="url(#glow)"/>
+      <circle cx="70" cy="-22" r="8" fill="#A78BFA"/>
+      <circle cx="88" cy="48" r="8" fill="#FDE68A"/>
+      <circle cx="18" cy="66" r="8" fill="#FB7185"/>
+      <path d="M8 -2 L61 -19 M7 5 L80 43 M20 10 L20 57 M74 -14 L86 39" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

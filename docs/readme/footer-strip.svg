@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-labelledby="title desc">
+  <title id="title">Built for traceable research reading</title>
+  <desc id="desc">A colorful footer with a network pattern and a closing project message.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0F2C68"/><stop offset="0.5" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+  </defs>
+  <rect width="1200" height="150" rx="28" fill="url(#bg)"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="2">
+    <path d="M55 40 L125 95 L198 45 L268 105"/><path d="M930 42 L1000 94 L1070 48 L1148 102"/>
+  </g>
+  <g fill="#22D3EE"><circle cx="55" cy="40" r="6"/><circle cx="125" cy="95" r="6"/><circle cx="198" cy="45" r="6"/><circle cx="268" cy="105" r="6"/></g>
+  <g fill="#FDE68A"><circle cx="930" cy="42" r="6"/><circle cx="1000" cy="94" r="6"/><circle cx="1070" cy="48" r="6"/><circle cx="1148" cy="102" r="6"/></g>
+  <text x="600" y="62" text-anchor="middle" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="800">Read the paper. Trace the evidence. Ship the result.</text>
+  <text x="600" y="98" text-anchor="middle" fill="#DDE7FF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17">Paper Reading Agent turns dense research PDFs into inspectable, presentation-ready deliverables.</text>
+</svg>

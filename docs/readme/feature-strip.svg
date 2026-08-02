@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="200" viewBox="0 0 1200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Paper Reading Agent capabilities</title>
+  <desc id="desc">Four colorful cards for evidence tracing, poster generation, reading reports, and quality assurance.</desc>
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0F2FE"/><stop offset="1" stop-color="#DBEAFE"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EDE9FE"/><stop offset="1" stop-color="#F3E8FF"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCFCE7"/><stop offset="1" stop-color="#D1FAE5"/></linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FEF3C7"/><stop offset="1" stop-color="#FFE4E6"/></linearGradient>
+  </defs>
+  <rect x="15" y="16" width="275" height="168" rx="22" fill="url(#a)" stroke="#7DD3FC"/>
+  <rect x="310" y="16" width="275" height="168" rx="22" fill="url(#b)" stroke="#C4B5FD"/>
+  <rect x="605" y="16" width="275" height="168" rx="22" fill="url(#c)" stroke="#86EFAC"/>
+  <rect x="900" y="16" width="285" height="168" rx="22" fill="url(#d)" stroke="#FDA4AF"/>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <g transform="translate(40 40)">
+      <circle cx="27" cy="27" r="27" fill="#0EA5E9"/><path d="M17 28l7 7 15-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="0" y="91" fill="#0F172A" font-size="21" font-weight="800">Evidence Grounding</text>
+      <text x="0" y="119" fill="#475569" font-size="15">Claims stay linked to pages, blocks,</text>
+      <text x="0" y="141" fill="#475569" font-size="15">captions, tables, and equations.</text>
+    </g>
+    <g transform="translate(335 40)">
+      <circle cx="27" cy="27" r="27" fill="#7C3AED"/><rect x="14" y="14" width="26" height="26" rx="5" fill="none" stroke="#fff" stroke-width="4"/><path d="M19 33l7-7 5 5 7-10" fill="none" stroke="#fff" stroke-width="3"/>
+      <text x="0" y="91" fill="#0F172A" font-size="21" font-weight="800">Visual Posters</text>
+      <text x="0" y="119" fill="#475569" font-size="15">Method, key idea, evidence, and</text>
+      <text x="0" y="141" fill="#475569" font-size="15">highlights composed into HTML/PDF.</text>
+    </g>
+    <g transform="translate(630 40)">
+      <circle cx="27" cy="27" r="27" fill="#10B981"/><path d="M17 14h20v28H17z" fill="none" stroke="#fff" stroke-width="4"/><path d="M22 22h10M22 29h10M22 36h7" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <text x="0" y="91" fill="#0F172A" font-size="21" font-weight="800">Reading Reports</text>
+      <text x="0" y="119" fill="#475569" font-size="15">Structured notes for careful review,</text>
+      <text x="0" y="141" fill="#475569" font-size="15">study, and evidence inspection.</text>
+    </g>
+    <g transform="translate(925 40)">
+      <circle cx="27" cy="27" r="27" fill="#FB7185"/><path d="M14 28h26M27 15v26" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="27" cy="28" r="16" fill="none" stroke="#fff" stroke-width="3"/>
+      <text x="0" y="91" fill="#0F172A" font-size="21" font-weight="800">Quality Gates</text>
+      <text x="0" y="119" fill="#475569" font-size="15">Checks provenance, readability,</text>
+      <text x="0" y="141" fill="#475569" font-size="15">asset integrity, and layout health.</text>
+    </g>
+  </g>
+</svg>
