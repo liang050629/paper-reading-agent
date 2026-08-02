@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Reading Report Render"
+  short_description: "Render paper reading reports to HTML Markdown and PDF"
+  default_prompt: "Use $paper-reading-report-render to render a sourced reading report as HTML, Markdown, and PDF."

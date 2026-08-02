@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Poster QA"
+  short_description: "Validate poster facts, assets, and layout"
+  default_prompt: "Use $paper-poster-qa to check poster provenance, numeric accuracy, and visual layout."

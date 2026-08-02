@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Method Graph"
+  short_description: "Extract sourced method modules and flow"
+  default_prompt: "Use $paper-method-graph to reconstruct this paper's method modules and evidence-backed reading order."

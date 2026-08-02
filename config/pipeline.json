@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "parser": {
+    "primary": "mineru",
+    "backend": "pipeline",
+    "fail_closed": true,
+    "allow_semantic_fallback": false
+  },
+  "reader": {
+    "default_mode": "analysis",
+    "poster_is_optional_branch": true
+  },
+  "poster": {
+    "theme": "amp",
+    "width_px": 3840,
+    "height_px": 2160,
+    "pdf_width": "48in",
+    "pdf_height": "27in",
+    "word_budget": 720,
+    "max_equations": 1,
+    "max_result_assets": 2,
+    "method_visual": {
+      "overview_coverage_threshold": 0.75,
+      "minimum_module_coverage": 0.67,
+      "max_detail_figures": 4,
+      "allow_result_figures": false,
+      "allow_overview_duplication": false,
+      "allow_subfigure_cropping": false
+    }
+  },
+  "quality_gates": {
+    "all_assertions_have_sources": true,
+    "all_figure_captions_inspected": true,
+    "allow_figure_number_prior": false,
+    "max_missing_assets": 0,
+    "max_numeric_mismatches": 0,
+    "min_method_module_coverage": 0.67,
+    "max_method_result_asset_leaks": 0,
+    "max_overflow_elements": 0,
+    "max_overlap_pairs": 0
+  },
+  "limits": {
+    "max_validation_cycles": 3,
+    "max_stage_revisions": 2
+  }
+}

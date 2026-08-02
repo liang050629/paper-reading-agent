@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — Reading Report</title>
+  <style>{{STYLE}}</style>
+</head>
+<body>
+  <header class="report-header">
+    <p class="eyebrow">Evidence-grounded paper reading report</p>
+    <h1>{{TITLE}}</h1>
+    <p class="authors">{{AUTHORS}}</p>
+    <p class="meta">{{META}}</p>
+  </header>
+
+  <nav class="toc" aria-label="Report contents">
+    <a href="#summary">Summary</a>
+    <a href="#storyline">Storyline</a>
+    <a href="#motivation">Motivation</a>
+    <a href="#contributions">Contributions</a>
+    <a href="#key-idea">Key Idea</a>
+    <a href="#method">Method</a>
+    <a href="#formulas">Formulas</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#claims">Claim–Evidence</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <section id="summary" class="hero-summary">
+      <div class="section-heading"><span>01</span><h2>Executive Summary</h2></div>
+      <p>{{EXECUTIVE_SUMMARY}}</p>
+    </section>
+
+    <section id="storyline">
+      <div class="section-heading"><span>02</span><h2>Paper Storyline</h2></div>
+      <div class="story-grid">{{STORYLINE}}</div>
+    </section>
+
+    <section id="motivation">
+      <div class="section-heading"><span>03</span><h2>Motivation</h2></div>
+      <div class="detail-grid">{{MOTIVATIONS}}</div>
+    </section>
+
+    <section id="contributions">
+      <div class="section-heading"><span>04</span><h2>Contributions</h2></div>
+      <div class="detail-grid">{{CONTRIBUTIONS}}</div>
+    </section>
+
+    <section id="key-idea">
+      <div class="section-heading"><span>05</span><h2>Poster Key Idea, Expanded</h2></div>
+      {{KEY_IDEA}}
+    </section>
+
+    <section id="method">
+      <div class="section-heading"><span>06</span><h2>Method Modules</h2></div>
+      <div class="method-list">{{METHOD_MODULES}}</div>
+    </section>
+
+    <section id="formulas">
+      <div class="section-heading"><span>07</span><h2>Formula Notebook</h2></div>
+      <div class="formula-grid">{{FORMULAS}}</div>
+    </section>
+
+    <section id="experiments">
+      <div class="section-heading"><span>08</span><h2>Experimental Design</h2></div>
+      <div class="story-grid">{{EXPERIMENTAL_DESIGN}}</div>
+      <div class="section-heading subheading"><h2>Experimental Results</h2></div>
+      {{EXPERIMENTAL_RESULTS}}
+    </section>
+
+    <section id="claims">
+      <div class="section-heading"><span>09</span><h2>Claim–Evidence Matrix</h2></div>
+      <div class="claim-list">{{CLAIMS}}</div>
+    </section>
+
+    <section id="limitations">
+      <div class="section-heading"><span>10</span><h2>Limitations and Reading Cautions</h2></div>
+      {{LIMITATIONS}}
+    </section>
+
+    <section id="sources">
+      <div class="section-heading"><span>11</span><h2>Source Index</h2></div>
+      <p class="section-note">Every visible factual statement above should resolve to one of these PaperIR blocks.</p>
+      <div class="source-index">{{SOURCES}}</div>
+    </section>
+  </main>
+
+  <footer>
+    Generated from PaperIR, Storyline, Method Graph, Claim–Evidence, and Poster artifacts.
+  </footer>
+</body>
+</html>

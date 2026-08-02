@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Reading Report QA"
+  short_description: "Validate reading report evidence and rendering quality"
+  default_prompt: "Use $paper-reading-report-qa to verify a paper reading report and its source traceability."

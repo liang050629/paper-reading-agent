@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="760" viewBox="0 0 1800 760">
+  <rect width="1800" height="760" fill="white"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#1761d1"/>
+    </marker>
+  </defs>
+  <g font-family="Arial" text-anchor="middle">
+    <text x="900" y="80" font-size="54" font-weight="800" fill="#092875">Adaptive Evidence Routing</text>
+    <g transform="translate(80 190)">
+      <rect width="430" height="330" rx="30" fill="#e8f1ff" stroke="#1761d1" stroke-width="7"/>
+      <text x="215" y="95" font-size="43" font-weight="700" fill="#092875">1. INGEST</text>
+      <text x="215" y="175" font-size="31" fill="#263b61">Blocks · Figures</text>
+      <text x="215" y="225" font-size="31" fill="#263b61">Equations · Tables</text>
+    </g>
+    <path d="M540 355h150" stroke="#1761d1" stroke-width="14" marker-end="url(#arrow)"/>
+    <g transform="translate(700 190)">
+      <rect width="430" height="330" rx="30" fill="#eef9f0" stroke="#2c9850" stroke-width="7"/>
+      <text x="215" y="95" font-size="43" font-weight="700" fill="#176235">2. ROUTE</text>
+      <text x="215" y="175" font-size="31" fill="#284f38">Claim → Evidence</text>
+      <text x="215" y="225" font-size="31" fill="#284f38">Support Verdict</text>
+    </g>
+    <path d="M1160 355h150" stroke="#1761d1" stroke-width="14" marker-end="url(#arrow)"/>
+    <g transform="translate(1320 190)">
+      <rect width="400" height="330" rx="30" fill="#fff1e7" stroke="#dc702d" stroke-width="7"/>
+      <text x="200" y="95" font-size="43" font-weight="700" fill="#9b4017">3. VERIFY</text>
+      <text x="200" y="175" font-size="31" fill="#68361f">Content QA</text>
+      <text x="200" y="225" font-size="31" fill="#68361f">Visual QA</text>
+    </g>
+    <text x="900" y="660" font-size="38" font-weight="700" fill="#d32432">Unsupported claims return to the responsible stage</text>
+  </g>
+</svg>
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Ingest"
+  short_description: "Parse PDFs with MinerU Cloud into traceable PaperIR"
+  default_prompt: "Use $paper-ingest to parse this PDF with MinerU's official cloud Extract client into traceable PaperIR."

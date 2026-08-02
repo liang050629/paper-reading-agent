@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="white"/>
+  <g font-family="Arial" font-size="38">
+    <rect x="60" y="70" width="1080" height="100" fill="#0b2c7d"/>
+    <text x="110" y="135" fill="white" font-weight="700">Method</text>
+    <text x="710" y="135" fill="white" font-weight="700">Accuracy</text>
+    <text x="970" y="135" fill="white" font-weight="700">Unsupported</text>
+    <g fill="#1e2f4f">
+      <text x="110" y="250">Baseline A</text><text x="750" y="250">66.9%</text><text x="1020" y="250">12.2%</text>
+      <text x="110" y="360">Baseline B</text><text x="750" y="360">72.2%</text><text x="1020" y="360">10.1%</text>
+    </g>
+    <rect x="60" y="400" width="1080" height="120" fill="#e7f0ff"/>
+    <text x="110" y="475" fill="#0b2c7d" font-weight="700">Ours</text>
+    <text x="750" y="475" fill="#d32432" font-weight="700">84.6%</text>
+    <text x="1020" y="475" fill="#d32432" font-weight="700">3.1%</text>
+  </g>
+</svg>
+

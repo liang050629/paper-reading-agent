@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Asset Select"
+  short_description: "Rank overview figures, formulas, and results"
+  default_prompt: "Use $paper-asset-select to inspect every caption and select the best overview, equations, and result assets."

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720">
+  <rect width="1100" height="720" fill="white"/>
+  <g font-family="Arial">
+    <text x="550" y="60" text-anchor="middle" font-size="42" font-weight="700" fill="#0b2c7d">Evidence-grounded Accuracy</text>
+    <line x1="120" y1="600" x2="1010" y2="600" stroke="#243959" stroke-width="5"/>
+    <line x1="120" y1="120" x2="120" y2="600" stroke="#243959" stroke-width="5"/>
+    <g text-anchor="middle">
+      <rect x="220" y="330" width="180" height="270" fill="#a8b8d0"/>
+      <text x="310" y="310" font-size="38" fill="#243959">66.9%</text>
+      <text x="310" y="655" font-size="31" fill="#243959">Baseline A</text>
+      <rect x="470" y="285" width="180" height="315" fill="#6f94ce"/>
+      <text x="560" y="265" font-size="38" fill="#243959">72.2%</text>
+      <text x="560" y="655" font-size="31" fill="#243959">Baseline B</text>
+      <rect x="720" y="190" width="180" height="410" fill="#1761d1"/>
+      <text x="810" y="165" font-size="43" font-weight="700" fill="#d32432">84.6%</text>
+      <text x="810" y="655" font-size="31" font-weight="700" fill="#0b2c7d">Ours</text>
+    </g>
+  </g>
+</svg>
+

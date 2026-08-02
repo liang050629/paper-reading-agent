@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Method Visual Compose"
+  short_description: "Compose a reader-first visual method story"
+  default_prompt: "Use $paper-method-visual-compose to build a method visual story from original paper figures and sourced module notes."

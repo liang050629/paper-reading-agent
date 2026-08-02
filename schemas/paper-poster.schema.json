@@ -1,0 +1,806 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/paper-poster.schema.json",
+  "title": "Paper Reading Agent Contracts",
+  "$defs": {
+    "SourceRef": {
+      "type": "object",
+      "required": ["block_id", "page"],
+      "properties": {
+        "block_id": {"type": "string", "minLength": 1},
+        "page": {"type": "integer", "minimum": 1},
+        "bbox": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"},
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "items": false
+            }
+          ]
+        },
+        "quote": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "Block": {
+      "type": "object",
+      "required": ["id", "type", "text", "page", "section_id"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {
+          "enum": ["title", "abstract", "heading", "paragraph", "caption", "equation", "table"]
+        },
+        "text": {"type": "string"},
+        "page": {"type": "integer", "minimum": 1},
+        "section_id": {"type": "string"},
+        "bbox": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "PaperIR": {
+      "type": "object",
+      "required": ["schema_version", "paper_id", "metadata", "blocks", "figures", "equations", "tables"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string", "minLength": 1},
+        "metadata": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {"type": "string", "minLength": 1},
+            "authors": {"type": "array", "items": {"type": "string"}},
+            "affiliations": {"type": "array", "items": {"type": "string"}},
+            "year": {"type": ["integer", "null"]},
+            "url": {"type": ["string", "null"]}
+          },
+          "additionalProperties": true
+        },
+        "blocks": {"type": "array", "items": {"$ref": "#/$defs/Block"}},
+        "figures": {"type": "array", "items": {"$ref": "#/$defs/Asset"}},
+        "equations": {"type": "array", "items": {"$ref": "#/$defs/Asset"}},
+        "tables": {"type": "array", "items": {"$ref": "#/$defs/Asset"}}
+      },
+      "additionalProperties": true
+    },
+    "Asset": {
+      "type": "object",
+      "required": ["id", "asset_type", "caption", "page"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "asset_type": {"enum": ["figure", "equation", "table"]},
+        "caption": {"type": "string"},
+        "page": {"type": "integer", "minimum": 1},
+        "section_id": {"type": "string"},
+        "path": {"type": ["string", "null"]},
+        "latex": {"type": ["string", "null"]},
+        "bbox": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}
+          ]
+        },
+        "context_before": {"type": "string"},
+        "context_after": {"type": "string"},
+        "cited_by": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "StoryNode": {
+      "type": "object",
+      "required": ["summary", "status", "sources", "confidence"],
+      "properties": {
+        "summary": {"type": "string"},
+        "status": {"enum": ["explicit", "inferred", "not_found", "conflicted"]},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/SourceRef"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "PaperStory": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "research_problem",
+        "motivation",
+        "prior_work_gap",
+        "core_hypothesis",
+        "method_design",
+        "theory_or_mechanism",
+        "experimental_design",
+        "experimental_results",
+        "conclusion",
+        "limitations",
+        "claims"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "research_problem": {"$ref": "#/$defs/StoryNode"},
+        "motivation": {"$ref": "#/$defs/StoryNode"},
+        "prior_work_gap": {"$ref": "#/$defs/StoryNode"},
+        "core_hypothesis": {"$ref": "#/$defs/StoryNode"},
+        "method_design": {"$ref": "#/$defs/StoryNode"},
+        "theory_or_mechanism": {"$ref": "#/$defs/StoryNode"},
+        "experimental_design": {"$ref": "#/$defs/StoryNode"},
+        "experimental_results": {"$ref": "#/$defs/StoryNode"},
+        "conclusion": {"$ref": "#/$defs/StoryNode"},
+        "limitations": {"$ref": "#/$defs/StoryNode"},
+        "claims": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "GateResult": {
+      "type": "object",
+      "required": ["passed", "reason"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "MotivationItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "visible_text",
+        "normalized_meaning",
+        "source_block_ids",
+        "source_pages",
+        "source_sections",
+        "source_records",
+        "gate_results",
+        "merged_from",
+        "confidence"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {
+          "enum": [
+            "problem_significance",
+            "practical_need",
+            "task_challenge",
+            "data_challenge",
+            "prior_method_limitation",
+            "unresolved_gap",
+            "design_requirement"
+          ]
+        },
+        "visible_text": {"type": "string"},
+        "normalized_meaning": {"type": "string"},
+        "source_block_ids": {"type": "array", "items": {"type": "string"}},
+        "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+        "source_sections": {"type": "array", "items": {"type": "string"}},
+        "source_records": {"type": "array", "items": {"type": "object"}},
+        "gate_results": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/GateResult"}
+        },
+        "merged_from": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "MotivationSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "items",
+        "rejected_candidates",
+        "selection_policy"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/MotivationItem"}},
+        "rejected_candidates": {"type": "array", "items": {"type": "object"}},
+        "selection_policy": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "ContributionItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "short_title",
+        "description",
+        "visible_text",
+        "contribution_type",
+        "innovation_object",
+        "mechanism",
+        "purpose",
+        "source_block_ids",
+        "source_pages",
+        "method_sections",
+        "source_records",
+        "supporting_evidence",
+        "gate_results",
+        "merged_from",
+        "confidence"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "short_title": {"type": "string"},
+        "description": {"type": "string"},
+        "visible_text": {"type": "string"},
+        "contribution_type": {
+          "enum": [
+            "architecture",
+            "module",
+            "mechanism",
+            "representation_method",
+            "fusion_strategy",
+            "feature_fusion_strategy",
+            "attention_or_interaction_strategy",
+            "attention_strategy",
+            "objective_or_loss",
+            "scoring_or_selection_criterion",
+            "scoring_criterion",
+            "optimization_method",
+            "training_strategy",
+            "theoretical_contribution",
+            "theoretical_principle",
+            "algorithm",
+            "dataset",
+            "benchmark",
+            "evaluation_protocol",
+            "system_or_tool",
+            "application_contribution",
+            "efficiency_contribution",
+            "robustness_or_generalization_contribution",
+            "empirical_finding"
+          ]
+        },
+        "innovation_object": {"type": "string"},
+        "mechanism": {"type": "string"},
+        "mechanism_or_action": {"type": "string"},
+        "purpose": {"type": "string"},
+        "solved_problem": {"type": "string"},
+        "reported_effect": {"type": "string"},
+        "source_candidate_ids": {"type": "array", "items": {"type": "string"}},
+        "source_block_ids": {"type": "array", "items": {"type": "string"}},
+        "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+        "method_sections": {"type": "array", "items": {"type": "string"}},
+        "source_records": {"type": "array", "items": {"type": "object"}},
+        "supporting_evidence": {"type": "array", "items": {"type": "object"}},
+        "gate_results": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/GateResult"}
+        },
+        "merged_from": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "ContributionSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "items",
+        "rejected_candidates",
+        "selection_policy"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/ContributionItem"}},
+        "rejected_candidates": {"type": "array", "items": {"type": "object"}},
+        "selection_policy": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "ContributionCandidateSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "candidate_count",
+        "selected_count",
+        "candidates"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "candidate_count": {"type": "integer", "minimum": 0},
+        "selected_count": {"type": "integer", "minimum": 0},
+        "candidates": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "ContributionAudit": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "status",
+        "candidate_count",
+        "selected_count",
+        "source_coverage",
+        "gate_rejection_counts",
+        "checks"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "status": {"enum": ["passed", "failed"]},
+        "candidate_count": {"type": "integer", "minimum": 0},
+        "selected_count": {"type": "integer", "minimum": 0},
+        "source_coverage": {"type": "object"},
+        "gate_rejection_counts": {"type": "object"},
+        "checks": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "ClaimEvidence": {
+      "type": "object",
+      "required": ["claim_id", "claim", "sources", "evidence", "verdict", "confidence"],
+      "properties": {
+        "claim_id": {"type": "string"},
+        "claim": {"type": "string"},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/SourceRef"}},
+        "evidence": {"type": "array", "items": {"type": "object"}},
+        "verdict": {"enum": ["supported", "partially_supported", "unsupported", "conflicted"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "MethodGraph": {
+      "type": "object",
+      "required": ["schema_version", "paper_id", "nodes", "edges", "status"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "order", "name", "purpose", "sources"],
+            "properties": {
+              "id": {"type": "string"},
+              "order": {"type": "integer", "minimum": 1},
+              "name": {"type": "string"},
+              "purpose": {"type": "string"},
+              "sources": {"type": "array", "items": {"$ref": "#/$defs/SourceRef"}}
+            },
+            "additionalProperties": true
+          }
+        },
+        "edges": {"type": "array", "items": {"type": "object"}},
+        "status": {"enum": ["passed", "failed"]}
+      },
+      "additionalProperties": true
+    },
+    "MethodFigureMap": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "figures_inspected",
+        "records",
+        "method_asset_ids",
+        "result_excluded_ids"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "figures_inspected": {"type": "integer", "minimum": 0},
+        "records": {"type": "array", "items": {"type": "object"}},
+        "method_asset_ids": {"type": "array", "items": {"type": "string"}},
+        "result_excluded_ids": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "MethodVisualPlan": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "mode",
+        "callouts",
+        "storyboard_items",
+        "method_asset_ids",
+        "result_asset_ids_in_method",
+        "module_coverage_ratio"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "mode": {
+          "enum": [
+            "single_overview",
+            "overview_plus_details",
+            "multi_figure_storyboard",
+            "text_only_method_path"
+          ]
+        },
+        "callouts": {"type": "array", "items": {"type": "object"}},
+        "storyboard_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["display_mode", "module_ids", "label", "description"],
+            "properties": {
+              "asset_id": {"type": ["string", "null"]},
+              "display_mode": {
+                "enum": ["original_figure", "mechanism_flow"]
+              },
+              "module_ids": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"type": "string"}
+              },
+              "label": {"type": "string"},
+              "description": {"type": "string"},
+              "flow": {"type": "object"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "method_asset_ids": {"type": "array", "items": {"type": "string"}},
+        "result_asset_ids_in_method": {"type": "array", "items": {"type": "string"}},
+        "module_coverage_ratio": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "KeyIdeaSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "type",
+        "headline",
+        "core_insight",
+        "visual",
+        "equation",
+        "takeaway",
+        "source_claim_ids",
+        "source_block_ids",
+        "confidence"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "type": {
+          "enum": [
+            "formula_centered",
+            "contrast_centered",
+            "mechanism_centered",
+            "architecture_centered",
+            "finding_centered"
+          ]
+        },
+        "headline": {"type": "string"},
+        "core_insight": {"type": "string"},
+        "visual": {
+          "type": "object",
+          "required": ["visual_type", "items"],
+          "properties": {
+            "visual_type": {
+              "enum": [
+                "equation_with_callouts",
+                "existing_vs_ours",
+                "single_mechanism_focus",
+                "two_part_mechanism",
+                "three_step_flow",
+                "mechanism_grid",
+                "single_architecture_focus",
+                "two_module_relationship",
+                "core_module_relationship",
+                "evidence_impact"
+              ]
+            },
+            "items": {"type": "array", "items": {"type": "object"}},
+            "overview_asset_id": {"type": "null"}
+          },
+          "additionalProperties": true
+        },
+        "equation": {
+          "type": "object",
+          "required": [
+            "equation_id",
+            "display_mode",
+            "image_path",
+            "latex",
+            "page",
+            "bbox",
+            "score",
+            "selection_reason",
+            "plain_language_explanation"
+          ],
+          "properties": {
+            "equation_id": {"type": ["string", "null"]},
+            "display_mode": {
+              "enum": ["original_crop", "latex_render", "none"]
+            },
+            "image_path": {"type": ["string", "null"]},
+            "latex": {"type": ["string", "null"]},
+            "page": {"type": ["integer", "null"]},
+            "bbox": {
+              "type": ["array", "null"],
+              "items": {"type": "number"},
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 12},
+            "selection_reason": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "plain_language_explanation": {"type": "string"},
+            "image_sha256": {"type": ["string", "null"]},
+            "crop_integrity": {"type": ["boolean", "null"]}
+          },
+          "additionalProperties": true
+        },
+        "takeaway": {"type": "string"},
+        "source_claim_ids": {"type": "array", "items": {"type": "string"}},
+        "source_block_ids": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "ExperimentalResultsSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "result_headline",
+        "layout_template",
+        "key_metrics",
+        "primary_asset",
+        "secondary_asset",
+        "condition_note",
+        "source_claim_ids",
+        "source_block_ids",
+        "visible_word_count",
+        "confidence"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "result_headline": {"type": "string"},
+        "layout_template": {
+          "enum": [
+            "quantitative_plus_qualitative",
+            "main_plus_ablation",
+            "finding_plus_generalization"
+          ]
+        },
+        "key_metrics": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "value",
+              "metric",
+              "direction",
+              "baseline",
+              "dataset",
+              "configuration",
+              "evaluation_condition",
+              "source_table_id",
+              "source_block_ids"
+            ],
+            "properties": {
+              "value": {"type": "string"},
+              "metric": {"type": "string"},
+              "direction": {
+                "enum": ["higher_is_better", "lower_is_better"]
+              },
+              "baseline": {"type": "string"},
+              "baseline_value": {"type": ["string", "null"]},
+              "delta": {"type": ["string", "null"]},
+              "delta_type": {
+                "enum": ["absolute", "relative", "percentage_points", null]
+              },
+              "dataset": {"type": "string"},
+              "configuration": {"type": "string"},
+              "evaluation_condition": {"type": "string"},
+              "source_table_id": {"type": ["string", "null"]},
+              "source_block_ids": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "primary_asset": {"type": ["object", "null"]},
+        "secondary_asset": {"type": ["object", "null"]},
+        "condition_note": {"type": "string"},
+        "source_claim_ids": {"type": "array", "items": {"type": "string"}},
+        "source_block_ids": {"type": "array", "items": {"type": "string"}},
+        "visible_word_count": {"type": "integer", "minimum": 0},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "HighlightsSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "highlights",
+        "candidate_count",
+        "eligible_candidate_count",
+        "selection_policy"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "highlights": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": [
+              "role",
+              "primary_value",
+              "label",
+              "context",
+              "claim_id",
+              "evidence_id",
+              "source_asset_id",
+              "page",
+              "row",
+              "column",
+              "dataset",
+              "configuration",
+              "baseline",
+              "metric_direction",
+              "absolute_difference",
+              "relative_difference_percent",
+              "gate_results",
+              "scores",
+              "caveats"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "candidate_count": {"type": "integer", "minimum": 0},
+        "eligible_candidate_count": {"type": "integer", "minimum": 0},
+        "selection_policy": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "SelectedAssets": {
+      "type": "object",
+      "required": ["paper_id", "captions_inspected", "overview_asset", "key_equations", "result_assets"],
+      "properties": {
+        "paper_id": {"type": "string"},
+        "captions_inspected": {"type": "integer", "minimum": 0},
+        "overview_asset": {"type": ["object", "null"]},
+        "key_equations": {"type": "array", "items": {"type": "object"}},
+        "result_assets": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "PosterSpec": {
+      "type": "object",
+      "required": ["schema_version", "paper_id", "theme", "canvas", "header", "panels"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string"},
+        "theme": {"const": "amp"},
+        "canvas": {"type": "object"},
+        "header": {"type": "object"},
+        "panels": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "ReadingReportSource": {
+      "type": "object",
+      "required": ["block_id", "page", "section", "bbox", "quote"],
+      "properties": {
+        "block_id": {"type": "string", "minLength": 1},
+        "page": {"type": "integer", "minimum": 1},
+        "section": {"type": "string"},
+        "bbox": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}
+          ]
+        },
+        "quote": {"type": "string"},
+        "figure_ids": {"type": "array", "items": {"type": "string"}},
+        "table_ids": {"type": "array", "items": {"type": "string"}},
+        "equation_ids": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "ReadingReportSpec": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "paper_id",
+        "metadata",
+        "executive_summary",
+        "storyline",
+        "motivations",
+        "contributions",
+        "method_modules",
+        "formulas",
+        "experimental_design",
+        "experimental_results",
+        "claim_evidence",
+        "limitations",
+        "poster_coverage",
+        "source_index"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "paper_id": {"type": "string", "minLength": 1},
+        "metadata": {"type": "object"},
+        "poster": {"type": "object"},
+        "executive_summary": {"type": "string"},
+        "storyline": {"type": "array", "items": {"type": "object"}},
+        "motivations": {"type": "array", "items": {"type": "object"}},
+        "contributions": {"type": "array", "items": {"type": "object"}},
+        "method_modules": {"type": "array", "items": {"type": "object"}},
+        "method_graph": {"type": "object"},
+        "key_idea": {"type": "object"},
+        "formulas": {"type": "array", "items": {"type": "object"}},
+        "experimental_design": {"type": "object"},
+        "experimental_results": {"type": "object"},
+        "highlights": {"type": "array", "items": {"type": "object"}},
+        "claim_evidence": {"type": "array", "items": {"type": "object"}},
+        "limitations": {"type": "object"},
+        "poster_coverage": {"type": "array", "items": {"type": "object"}},
+        "source_index": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ReadingReportSource"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "ReadingReportQa": {
+      "type": "object",
+      "required": ["schema_version", "status", "checks", "issues", "return_to"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "status": {
+          "enum": ["passed", "passed_with_warnings", "failed", "blocked"]
+        },
+        "checks": {"type": "object"},
+        "issues": {"type": "array", "items": {"type": "object"}},
+        "return_to": {"type": ["string", "null"]},
+        "metrics": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "QaReport": {
+      "type": "object",
+      "required": ["status", "checks", "issues", "return_to"],
+      "properties": {
+        "status": {
+          "enum": ["passed", "passed_with_warnings", "failed", "blocked"]
+        },
+        "delivery_status": {
+          "enum": ["passed", "usable_with_warnings", "blocked"]
+        },
+        "checks": {"type": "object"},
+        "issues": {"type": "array", "items": {"type": "object"}},
+        "return_to": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    }
+  }
+}
+

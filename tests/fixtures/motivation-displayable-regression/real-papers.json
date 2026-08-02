@@ -1,0 +1,107 @@
+{
+  "papers": [
+    {
+      "name": "RCCFormer",
+      "paper_ir": {
+        "paper_id": "rccformer-displayable-regression",
+        "blocks": [
+          {
+            "id": "rcc-intro-1",
+            "type": "paragraph",
+            "page": 1,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Transformer-based methods tend to perform better than CNN-based methods. However, the transformer backbone is still limited by extracting single-level features. Relying solely on high-level features can cause the network to lose detailed crowd location information. Earlier fusion methods overlook the inherent information discrepancy between high-level and low-level features."
+          },
+          {
+            "id": "rcc-intro-2",
+            "type": "paragraph",
+            "page": 2,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Large scale variation is one of the main challenges in crowd counting. Traditional CNNs use fixed and limited receptive fields, restricting their ability to explore scale and shape variations. This leads to poor performance when head scales change substantially."
+          },
+          {
+            "id": "rcc-intro-3",
+            "type": "paragraph",
+            "page": 2,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Complex backgrounds also pose a significant challenge to accurate counting. Existing attention methods still struggle because independently weighted channel and spatial locations do not model foreground objects effectively. Effective solutions must distinguish foreground heads from complex backgrounds."
+          }
+        ]
+      },
+      "story": {
+        "research_problem": {"summary": "Robust crowd counting under scale variation and complex backgrounds."},
+        "prior_work_gap": {"summary": "Existing backbones and attention mechanisms miss cross-level detail and foreground context."},
+        "core_hypothesis": {"summary": "Reliable counting requires adaptive scale perception and foreground-background discrimination."}
+      }
+    },
+    {
+      "name": "MSLAU-Net",
+      "paper_ir": {
+        "paper_id": "mslau-displayable-regression",
+        "blocks": [
+          {
+            "id": "mslau-intro-1",
+            "type": "paragraph",
+            "page": 1,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "CNN-based methods are constrained by fixed convolutional receptive fields, hindering their capacity to capture long-range dependencies and global semantic information. Capturing long-range spatial dependencies remains a persistent challenge."
+          },
+          {
+            "id": "mslau-intro-2",
+            "type": "paragraph",
+            "page": 2,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Vanilla self-attention suffers from high computational complexity and memory demands. Sparse attention restricts the receptive field and risks neglecting critical long-range positions. Linear attention remains underexplored in medical image segmentation."
+          },
+          {
+            "id": "mslau-intro-3",
+            "type": "paragraph",
+            "page": 2,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Multi-scale information is essential for handling significant variations between tissues and lesion areas, ranging from microscopic cellular structures to macroscopic organs. Most existing linear attention approaches operate at a single scale and fail to exploit multi-scale information."
+          }
+        ]
+      },
+      "story": {
+        "research_problem": {"summary": "Medical image segmentation across widely varying anatomical scales."},
+        "prior_work_gap": {"summary": "CNNs miss global context while attention mechanisms remain costly or single-scale."},
+        "core_hypothesis": {"summary": "Efficient segmentation requires multi-scale local features and global context."}
+      }
+    },
+    {
+      "name": "Sim-MPNet",
+      "paper_ir": {
+        "paper_id": "sim-mpnet-displayable-regression",
+        "blocks": [
+          {
+            "id": "sim-intro-1",
+            "type": "paragraph",
+            "page": 1,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Medical image segmentation is important for disease diagnosis, treatment planning, and outcome evaluation."
+          },
+          {
+            "id": "sim-intro-2",
+            "type": "paragraph",
+            "page": 1,
+            "section_id": "introduction",
+            "section_title": "Introduction",
+            "text": "Although CNN receptive fields match translation invariance, their inductive bias passively responds to local textures rather than actively modeling semantic objects such as lesions and organs. ViTs require massive data to learn semantic associations, while medical image annotation is scarce, leading to pseudo-global modeling focused on texture rather than anatomy. CNNs and ViTs belong to data-driven implicit learning and lack prior knowledge to quickly identify key features. If medical segmentation networks directly focus on lesions or organs as category features, this may provide a promising design paradigm."
+          }
+        ]
+      },
+      "story": {
+        "research_problem": {"summary": "Medical segmentation must identify anatomical categories with scarce annotations."},
+        "prior_work_gap": {"summary": "CNNs and ViTs favor texture-driven implicit learning without category priors."},
+        "core_hypothesis": {"summary": "Category-aware prior knowledge can guide lesion and organ segmentation."}
+      }
+    }
+  ]
+}

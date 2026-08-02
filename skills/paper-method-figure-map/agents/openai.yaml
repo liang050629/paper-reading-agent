@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Method Figure Map"
+  short_description: "Map method figures to innovation modules"
+  default_prompt: "Use $paper-method-figure-map to classify paper figures and map only method visuals to method modules."

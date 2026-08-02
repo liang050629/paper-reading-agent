@@ -1,0 +1,5 @@
+interface:
+  display_name: "Paper Experimental Results"
+  short_description: "Build claim-grounded poster results panels"
+  brand_color: "#1758D0"
+  default_prompt: "Use $paper-experimental-results to select and verify the strongest experimental evidence for this paper poster."

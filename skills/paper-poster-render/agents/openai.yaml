@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Poster Render"
+  short_description: "Render AMP-style HTML, PNG, and PDF"
+  default_prompt: "Use $paper-poster-render to render the poster specification as AMP-style HTML, PNG, and PDF."

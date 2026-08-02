@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Storyline"
+  short_description: "Extract a sourced research storyline"
+  default_prompt: "Use $paper-storyline to extract the paper research storyline with explicit source evidence."

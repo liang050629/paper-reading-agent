@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="#f5f8ff"/>
+  <g font-family="Arial" text-anchor="middle">
+    <text x="600" y="70" font-size="42" font-weight="700" fill="#0b2c7d">Dataset Samples</text>
+    <g transform="translate(80 130)">
+      <rect width="300" height="350" rx="24" fill="#dce9ff" stroke="#1f5ec7" stroke-width="5"/>
+      <text x="150" y="80" font-size="36" fill="#153a83">Vision</text>
+      <circle cx="150" cy="210" r="70" fill="#76a7f4"/>
+    </g>
+    <g transform="translate(450 130)">
+      <rect width="300" height="350" rx="24" fill="#eaf3e8" stroke="#31885a" stroke-width="5"/>
+      <text x="150" y="80" font-size="36" fill="#245c40">Language</text>
+      <path d="M70 160h160v120H70z" fill="#77bd91"/>
+    </g>
+    <g transform="translate(820 130)">
+      <rect width="300" height="350" rx="24" fill="#fff1de" stroke="#d37a19" stroke-width="5"/>
+      <text x="150" y="80" font-size="36" fill="#8b4d0b">Systems</text>
+      <path d="M70 260l80-120 80 120z" fill="#efa64e"/>
+    </g>
+  </g>
+</svg>
+

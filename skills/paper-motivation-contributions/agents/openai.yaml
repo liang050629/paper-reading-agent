@@ -1,0 +1,5 @@
+interface:
+  display_name: "Paper Motivation Contributions"
+  short_description: "Rewrite and audit core poster messages"
+  brand_color: "#1758D0"
+  default_prompt: "Use $paper-motivation-contributions to generate traceable, deduplicated, Poster-ready Motivation and Contributions."

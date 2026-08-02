@@ -1,0 +1,18 @@
+{
+  "paper_id": "compound-global-transformer",
+  "item_count": 5,
+  "required_roles": [
+    "task_problem_or_challenge",
+    "prior_method_limitation",
+    "gap_requirement_or_objective"
+  ],
+  "relation_signatures": [
+    "problem_has_consequence",
+    "prior_method_causes_failure",
+    "paper_targets_problem"
+  ],
+  "method_leakage": 0,
+  "result_leakage": 0,
+  "forbidden_visible_text": 0,
+  "rewrite_failures": 0
+}

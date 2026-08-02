@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0.0",
+  "paper_id": "adaptive-evidence-routing",
+  "metadata": {
+    "title": "Adaptive Evidence Routing for Reliable Paper Understanding",
+    "authors": [
+      "Alice Researcher",
+      "Bob Scientist"
+    ],
+    "affiliations": [
+      "Example University"
+    ],
+    "year": 2026,
+    "url": "https://example.org/paper",
+    "code_url": "https://example.org/code"
+  },
+  "blocks": [
+    {
+      "id": "b-title",
+      "type": "title",
+      "text": "Adaptive Evidence Routing for Reliable Paper Understanding",
+      "page": 1,
+      "section_id": "front-matter",
+      "section_title": "Front matter",
+      "bbox": null
+    },
+    {
+      "id": "b-abstract",
+      "type": "abstract",
+      "text": "Scientific paper assistants often summarize claims without traceable evidence. We propose Adaptive Evidence Routing, a framework that binds each generated statement to paper blocks and routes unsupported claims back for review. We introduce a claim-to-evidence routing mechanism that assigns evidence scores and returns weakly supported claims for review. We formulate an evidence alignment loss that jointly optimizes task fidelity and source consistency. Our method improves evidence-grounded answer accuracy by 12.4% over the strongest baseline.",
+      "page": 1,
+      "section_id": "abstract",
+      "section_title": "Abstract",
+      "bbox": null
+    },
+    {
+      "id": "b-intro-1",
+      "type": "paragraph",
+      "text": "Plausible model completions can obscure the distinction between author claims and generated statements. Reliable paper understanding is important because readers must distinguish those sources.",
+      "page": 1,
+      "section_id": "introduction",
+      "section_title": "Introduction",
+      "bbox": null
+    },
+    {
+      "id": "b-intro-2",
+      "type": "paragraph",
+      "text": "However, existing assistants usually optimize summary fluency and do not verify whether experiments support each conclusion. Reliable assistants must bind every conclusion to traceable experimental evidence.",
+      "page": 1,
+      "section_id": "introduction",
+      "section_title": "Introduction",
+      "bbox": null
+    },
+    {
+      "id": "b-method-1",
+      "type": "paragraph",
+      "text": "We propose a three-stage framework with structured ingestion, claim-to-evidence routing, and a hard quality gate.",
+      "page": 3,
+      "section_id": "method",
+      "section_title": "Method",
+      "bbox": null
+    },
+    {
+      "id": "b-method-2",
+      "type": "paragraph",
+      "text": "The mechanism assigns each claim an evidence score and sends claims below threshold tau back to the analysis stage. The training objective minimizes task loss together with an evidence alignment loss.",
+      "page": 4,
+      "section_id": "method",
+      "section_title": "Method",
+      "bbox": null
+    },
+    {
+      "id": "b-experiment",
+      "type": "paragraph",
+      "text": "We evaluate on three computer-science paper datasets using two strong baselines, evidence-grounded answer accuracy, claim recall, and unsupported-claim rate.",
+      "page": 6,
+      "section_id": "experiments",
+      "section_title": "Experiments",
+      "bbox": null
+    },
+    {
+      "id": "b-results-1",
+      "type": "paragraph",
+      "text": "Our method improves evidence-grounded answer accuracy by 12.4% over the strongest baseline on the three-paper benchmark.",
+      "page": 7,
+      "section_id": "results",
+      "section_title": "Results",
+      "bbox": null
+    },
+    {
+      "id": "b-results-2",
+      "type": "paragraph",
+      "text": "The ablation result shows that removing evidence routing increases the unsupported-claim rate from 3.1% to 9.8%.",
+      "page": 7,
+      "section_id": "results",
+      "section_title": "Results",
+      "bbox": null
+    },
+    {
+      "id": "b-conclusion",
+      "type": "paragraph",
+      "text": "We demonstrate that evidence routing improves reliable paper understanding while preserving the original paper assets.",
+      "page": 9,
+      "section_id": "conclusion",
+      "section_title": "Conclusion",
+      "bbox": null
+    },
+    {
+      "id": "b-limitations",
+      "type": "paragraph",
+      "text": "A limitation is that the evaluation covers only computer-science papers and does not yet test scanned historical documents.",
+      "page": 9,
+      "section_id": "limitations",
+      "section_title": "Limitations",
+      "bbox": null
+    }
+  ],
+  "figures": [
+    {
+      "id": "figure-1",
+      "asset_type": "figure",
+      "caption": "Figure 1: Dataset samples from the three evaluation collections.",
+      "page": 2,
+      "section_id": "data",
+      "path": "assets/figure-1.svg",
+      "latex": null,
+      "bbox": null,
+      "context_before": "We collect paper samples from three domains.",
+      "context_after": "The datasets contain papers of different lengths.",
+      "cited_by": [
+        "Figure 1 shows representative dataset samples."
+      ]
+    },
+    {
+      "id": "figure-2",
+      "asset_type": "figure",
+      "caption": "Figure 2: Overall framework and architecture of Adaptive Evidence Routing.",
+      "page": 3,
+      "section_id": "method",
+      "path": "assets/figure-2.svg",
+      "latex": null,
+      "bbox": null,
+      "context_before": "The overall proposed framework is illustrated below.",
+      "context_after": "The architecture contains ingestion, evidence routing, and quality control.",
+      "cited_by": [
+        "As illustrated in Figure 2, the complete pipeline contains three stages.",
+        "Figure 2 provides an overview of the proposed method."
+      ]
+    },
+    {
+      "id": "figure-3",
+      "asset_type": "figure",
+      "caption": "Figure 3: Experimental results and accuracy comparison with baselines.",
+      "page": 7,
+      "section_id": "results",
+      "path": "assets/figure-3.svg",
+      "latex": null,
+      "bbox": [100, 120, 900, 760],
+      "context_before": "We compare evidence-grounded answer accuracy.",
+      "context_after": "The proposed method has the best performance.",
+      "cited_by": ["b-results-1"]
+    }
+  ],
+  "equations": [
+    {
+      "id": "equation-1",
+      "asset_type": "equation",
+      "caption": "The main training objective combines task loss and evidence alignment loss.",
+      "page": 4,
+      "section_id": "method",
+      "path": null,
+      "latex": "\\mathcal{L}=\\mathcal{L}_{task}+\\lambda\\mathcal{L}_{evidence}",
+      "bbox": null,
+      "context_before": "We optimize the following objective function.",
+      "context_after": "The evidence loss penalizes unsupported claims.",
+      "cited_by": []
+    },
+    {
+      "id": "equation-2",
+      "asset_type": "equation",
+      "caption": "Standard accuracy metric.",
+      "page": 6,
+      "section_id": "experiments",
+      "path": null,
+      "latex": "Accuracy=Correct/Total",
+      "bbox": null,
+      "context_before": "We report accuracy.",
+      "context_after": "",
+      "cited_by": []
+    }
+  ],
+  "tables": [
+    {
+      "id": "table-1",
+      "asset_type": "table",
+      "caption": "Table 1: Main performance comparison on the paper understanding benchmark.",
+      "page": 7,
+      "section_id": "results",
+      "path": "assets/table-1.svg",
+      "latex": null,
+      "bbox": [80, 100, 920, 650],
+      "context_before": "We compare the proposed system with two baselines.",
+      "context_after": "Our system reaches 84.6% evidence-grounded accuracy.",
+      "cited_by": ["b-results-1"],
+      "html": "<table><tr><th>Method</th><th>Accuracy ↑</th><th>Unsupported ↓</th></tr><tr><td>Baseline A</td><td>66.9%</td><td>12.2%</td></tr><tr><td>Baseline B</td><td>72.2%</td><td>10.1%</td></tr><tr><td>Ours</td><td>84.6%</td><td>3.1%</td></tr></table>",
+      "footnote": ""
+    }
+  ]
+}
